@@ -31,11 +31,27 @@
 			$title = array( get_the_title() , $site);
 		}
 
+		elseif ( is_tag() )
+		{
+			$title = array( single_tag_title('Мітка : ', false), $site);
+		}
+
+		elseif (is_search()) {
+			$title = array('Результат пошуку: '.get_search_query());
+		}
+
+		elseif ( is_404() )
+		{
+			$title = array('Сторінка не існує');
+		}
+
 		elseif (is_archive()) 
 		{
 			$title = array('Архів за :'. get_the_time("F Y"),$site);
 		}
 		
+
+
 		$title = implode($sep , $title);
 		return $title;
 
